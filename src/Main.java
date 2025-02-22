@@ -28,17 +28,18 @@ public class Main {
                     quienVa = "negras";
                 }else quienVa = "blancas";
                 System.out.println("¡Ganan las " + quienVa + "!");
-            }else {
-
+            }else if(entrada.equalsIgnoreCase("o-o") || entrada.equalsIgnoreCase("o-o-o")){
+                System.out.println("Quisiste enrocar. Estamos trabajando en ello");
+            }else{
                 if (juego.validarJugada(entrada, tablero) == null) {
                     mov = juego.transformarAJugada(entrada);
                     tablero.ponPieza(tablero.devuelvePieza(mov.getPosInicial()), mov.getPosFinal());
                     tablero.quitaPieza(mov.getPosInicial());
-
+                    //Cambiar el turno porque la jugada es válida
                     juego.setTurno(!juego.getTurno());
                 } else System.out.println(juego.validarJugada(entrada, tablero));
 
             }
-        }while (fin == false);
+        }while (!fin);
     }
 }
