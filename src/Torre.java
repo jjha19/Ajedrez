@@ -3,7 +3,7 @@ public class Torre extends Pieza {
 
     public Torre(boolean color) {
         super(color);
-        if(color==true){
+        if(color){
             setNombre("\u265C");
         }
         else setNombre("\u2656");
