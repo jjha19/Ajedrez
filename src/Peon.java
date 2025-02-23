@@ -2,9 +2,9 @@ public class Peon extends Pieza{
 
     public Peon(boolean color){
         super(color);
-        if(color == true){
-            setNombre("\u265F");
-        }else setNombre("\u2659");
+        if(color){
+            setNombre("♟");
+        }else setNombre("♙");
     }
 
     @Override

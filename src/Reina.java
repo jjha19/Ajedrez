@@ -2,8 +2,8 @@ public class Reina extends Pieza {
 
     public Reina(boolean color) {
         super(color);
-        if(color == true) setNombre("\u265B");
-        else setNombre("\u2655");
+        if(color) setNombre("♛");
+        else setNombre("♕");
     }
 
     @Override

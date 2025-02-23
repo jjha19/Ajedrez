@@ -4,9 +4,9 @@ public class Torre extends Pieza {
     public Torre(boolean color) {
         super(color);
         if(color){
-            setNombre("\u265C");
+            setNombre("♜");
         }
-        else setNombre("\u2656");
+        else setNombre("♖");
     }
 
     @Override

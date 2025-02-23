@@ -3,8 +3,8 @@ public class Rey extends Pieza{
 
     public Rey(boolean color) {
         super(color);
-        if(color == true) setNombre("\u265A");
-        else setNombre("\u2654");
+        if(color) setNombre("♚");
+        else setNombre("♔");
     }
 
     @Override

@@ -1,9 +1,9 @@
 public class Caballo extends Pieza{
     public Caballo(boolean color){
         super(color);
-        if(color == true){
-           setNombre("\u265E");
-        }else setNombre("\u2658");
+        if(color){
+           setNombre("♞");
+        }else setNombre("♘");
     }
 
     @Override
