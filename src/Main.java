@@ -29,10 +29,10 @@ public class Main {
                 }else quienVa = "blancas";
                 System.out.println("¡Ganan las " + quienVa + "!");
             }else if(entrada.equalsIgnoreCase("o-o") || entrada.equalsIgnoreCase("o-o-o")){
-                juego.validarJugada(entrada,tablero);
-                //Cambiar el turno porque la jugada es válida
-                System.out.println(juego.validarJugada(entrada,tablero));
-                juego.setTurno(!juego.getTurno());
+                if (juego.validarJugada(entrada, tablero) == null) {
+                    juego.validarJugada(entrada, tablero);
+                    juego.setTurno(!juego.getTurno());
+                } else System.out.println(juego.validarJugada(entrada, tablero));
             }else{
                 if (juego.validarJugada(entrada, tablero) == null) {
                     mov = juego.transformarAJugada(entrada);

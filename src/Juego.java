@@ -138,7 +138,7 @@ public class Juego {
                                 tablero.quitaPieza(7,0);
                             }else advertencia = "La torre ya se movio. No se puede enrocar";
                         }else advertencia = "El rey ya se movio. No se puede enrocar";
-                    }else advertencia = "Este enroque largo no se puede hacer. Hay gente en medio";
+                    }else advertencia = "Este enroque corto no se puede hacer. Hay gente en medio";
                 }else advertencia = "No se puede hacer el enroque. Te faltan las piezas necesarias";
             }else {
                 //Se cerciora si hay un rey y una torre en sus posiciones
