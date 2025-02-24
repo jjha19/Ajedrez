@@ -59,16 +59,15 @@ public class Juego {
                 } else advertencia = "No hay pieza que mover. Escribe otra jugada";
             } else advertencia = "La jugada se va de los límites. Escribe otra";
 
-            //Se fija si la entrada es enroque largo
         }else if(entradaUsuario.equalsIgnoreCase("o-o-o")) {
             //si es turno de las negras
             if(turno){
                 //Se cerciora si hay un rey y una torre en sus posiciones
-                if(tablero.devuelvePieza(8,4) instanceof Rey && tablero.devuelvePieza(8,8) instanceof Torre){
+                if(tablero.devuelvePieza(7,3) instanceof Rey && tablero.devuelvePieza(7,7) instanceof Torre){
 
                     //Guarda las posiciones de cada uno
-                    Posicion posReyNegro = new Posicion(8,4);
-                    Posicion posTorreLargo  = new Posicion(8,8);
+                    Posicion posReyNegro = new Posicion(7,3);
+                    Posicion posTorreLargo  = new Posicion(7,7);
                     Movimiento enroquelargo = new Movimiento(posReyNegro, posTorreLargo, tablero);
 
                     //se fija que no haya piezas en medio
@@ -81,20 +80,20 @@ public class Juego {
                         if (!reynegro.getReyMovido()) {
                             if(!torre.getTorreMovida()){
 
-                                tablero.ponPieza(reynegro, 8, 6);
-                                tablero.quitaPieza(8,4);
+                                tablero.ponPieza(reynegro, 7, 5);
+                                tablero.quitaPieza(7,3);
 
-                                tablero.ponPieza(torre,8,5);
-                                tablero.quitaPieza(8,8);
+                                tablero.ponPieza(torre,7,4);
+                                tablero.quitaPieza(7,7);
                             }else advertencia = "La torre ya se movio. No se puede enrocar";
                         }else advertencia = "El rey ya se movio. No se puede enrocar";
                     }else advertencia = "Este enroque largo no se puede hacer. Hay gente en medio";
                 }else advertencia = "No se puede hacer el enroque. Te faltan las piezas necesarias";
             } else{
-                if(tablero.devuelvePieza(1,5) instanceof Rey && tablero.devuelvePieza(1,1) instanceof Torre){
+                if(tablero.devuelvePieza(0,4) instanceof Rey && tablero.devuelvePieza(0,0) instanceof Torre){
 
-                    Posicion posReyBlanco = new Posicion(1,5);
-                    Posicion posTorreLargo  = new Posicion(1,1);
+                    Posicion posReyBlanco = new Posicion(0,4);
+                    Posicion posTorreLargo  = new Posicion(0,0);
                     Movimiento enroquelargo = new Movimiento(posReyBlanco, posTorreLargo, tablero);
                     if(!tablero.hayPiezasEntre(enroquelargo)){
                         Torre torre = (Torre) tablero.devuelvePieza(posTorreLargo);
@@ -102,21 +101,75 @@ public class Juego {
                         if (!reyBlanco.getReyMovido()) {
                             if(!torre.getTorreMovida()){
 
-                                tablero.ponPieza(reyBlanco, 1, 3);
-                                tablero.quitaPieza(1,5);
+                                tablero.ponPieza(reyBlanco, 0, 2);
+                                tablero.quitaPieza(0,4);
 
-                                tablero.ponPieza(torre,1,4);
-                                tablero.quitaPieza(1,1);
+                                tablero.ponPieza(torre,0,3);
+                                tablero.quitaPieza(0,0);
                             }else advertencia = "La torre ya se movio. No se puede enrocar";
                         }else advertencia = "El rey ya se movio. No se puede enrocar";
                     }else advertencia = "Este enroque largo no se puede hacer. Hay gente en medio";
                 }else advertencia = "No se puede hacer el enroque. Te faltan las piezas necesarias";
             }
         } else if(entradaUsuario.equalsIgnoreCase("o-o")) {
+            if(turno){
+                //Se cerciora si hay un rey y una torre en sus posiciones
+                if(tablero.devuelvePieza(7,3) instanceof Rey && tablero.devuelvePieza(7,0) instanceof Torre){
 
-            advertencia = "Hay que codificar el enroque corto";
+                    //Guarda las posiciones de cada uno
+                    Posicion posReyNegro = new Posicion(7,3);
+                    Posicion posTorreCorto  = new Posicion(7,0);
+                    Movimiento enroqueCorto = new Movimiento(posReyNegro, posTorreCorto, tablero);
 
+                    //se fija que no haya piezas en medio
+                    if(!tablero.hayPiezasEntre(enroqueCorto)){
 
+                        //Castea estas piezas para poder acceder a sus atributos
+                        Torre torre = (Torre) tablero.devuelvePieza(posTorreCorto);
+                        Rey reynegro = (Rey) tablero.devuelvePieza(posReyNegro);
+                        // se fija si se movieron
+                        if (!reynegro.getReyMovido()) {
+                            if(!torre.getTorreMovida()){
+
+                                tablero.ponPieza(reynegro, 7, 1);
+                                tablero.quitaPieza(7,3);
+
+                                tablero.ponPieza(torre,7,2);
+                                tablero.quitaPieza(7,0);
+                            }else advertencia = "La torre ya se movio. No se puede enrocar";
+                        }else advertencia = "El rey ya se movio. No se puede enrocar";
+                    }else advertencia = "Este enroque largo no se puede hacer. Hay gente en medio";
+                }else advertencia = "No se puede hacer el enroque. Te faltan las piezas necesarias";
+            }else {
+                //Se cerciora si hay un rey y una torre en sus posiciones
+                if(tablero.devuelvePieza(0,4) instanceof Rey && tablero.devuelvePieza(0,7) instanceof Torre){
+
+                    //Guarda las posiciones de cada uno
+                    Posicion posReyBlanco = new Posicion(0,4);
+                    Posicion posTorreCorto  = new Posicion(0,7);
+                    Movimiento enroqueCorto = new Movimiento(posReyBlanco, posTorreCorto, tablero);
+
+                    //se fija que no haya piezas en medio
+                    if(!tablero.hayPiezasEntre(enroqueCorto)){
+
+                        //Castea estas piezas para poder acceder a sus atributos
+                        Torre torre = (Torre) tablero.devuelvePieza(posTorreCorto);
+                        Rey reyblanco = (Rey) tablero.devuelvePieza(posReyBlanco);
+                        // se fija si se movieron
+                        if (!reyblanco.getReyMovido()) {
+                            if(!torre.getTorreMovida()){
+
+                                //Hace propiamente el enroque
+                                tablero.ponPieza(reyblanco, 0, 6);
+                                tablero.quitaPieza(0,4);
+
+                                tablero.ponPieza(torre,0,5);
+                                tablero.quitaPieza(0,7);
+                            }else advertencia = "La torre ya se movio. No se puede enrocar";
+                        }else advertencia = "El rey ya se movio. No se puede enrocar";
+                    }else advertencia = "Este enroque largo no se puede hacer. Hay gente en medio";
+                }else advertencia = "No se puede hacer el enroque. Te faltan las piezas necesarias";
+            }
         } else advertencia = "La jugada no tiene la longitud correcta. Introduce otra.";
         return advertencia;
     }

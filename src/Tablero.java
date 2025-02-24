@@ -102,13 +102,13 @@ public class Tablero {
             // chequea si es "ascendente" o "descendente"
             if ( movimiento.getPosInicial().getFila() < movimiento.getPosFinal().getFila()){
 
-                for (int i = movimiento.getPosInicial().getFila() + 1; i < movimiento.saltoVertical(); i++) {
+                for (int i = movimiento.getPosInicial().getFila() + 1; i < movimiento.getPosFinal().getFila(); i++) {
                     if (tablero[i][movimiento.getPosInicial().getColumna()] != null) {
                         siHay = true;
                     }
                 }
             }else {
-                for (int i = movimiento.getPosInicial().getFila() - 1; i > movimiento.saltoVertical(); i--) {
+                for (int i = movimiento.getPosInicial().getFila() - 1; i > movimiento.getPosFinal().getFila(); i--) {
                     if (tablero[i][movimiento.getPosInicial().getColumna()] != null) {
                         siHay = true;
                     }
@@ -117,13 +117,13 @@ public class Tablero {
             //lo mismo pero en Horizontal
         } else if (movimiento.esHorizontal()){
             if (movimiento.getPosInicial().getColumna() < movimiento.getPosFinal().getColumna()){
-                for (int i = movimiento.getPosInicial().getColumna() + 1; i < movimiento.saltoHorizontal(); i++) {
+                for (int i = movimiento.getPosInicial().getColumna() + 1; i < movimiento.getPosFinal().getColumna(); i++) {
                     if (tablero[i][movimiento.getPosInicial().getFila()] != null) {
                         siHay = true;
                     }
                 }
             }else {
-                for (int i = movimiento.getPosInicial().getColumna() - 1; i > movimiento.saltoHorizontal(); i--) {
+                for (int i = movimiento.getPosInicial().getColumna() - 1; i > movimiento.getPosFinal().getColumna(); i--) {
                     if (tablero[i][movimiento.getPosInicial().getFila()] != null) {
                         siHay = true;
                     }
@@ -137,8 +137,8 @@ public class Tablero {
                 if (movimiento.getPosInicial().getFila() < movimiento.getPosFinal().getFila()){
 
                     //si es diagonal descendente ("aumentan" filas y columnas)
-                    for (int i = movimiento.getPosInicial().getColumna() + 1; i < movimiento.saltoHorizontal(); i++) {
-                        for (int j = movimiento.getPosInicial().getFila() + 1; j < movimiento.saltoVertical(); j++) {
+                    for (int i = movimiento.getPosInicial().getColumna() + 1; i < movimiento.getPosFinal().getColumna(); i++) {
+                        for (int j = movimiento.getPosInicial().getFila() + 1; j < movimiento.getPosFinal().getFila(); j++) {
                             if (tablero[j][i] != null) {
                                 siHay = true;
                             }
@@ -147,8 +147,8 @@ public class Tablero {
                 }else {
 
                     //Si es diagonal ascendente (decrecen filas pero aumentan columnas)
-                    for (int i = movimiento.getPosInicial().getColumna() + 1; i < movimiento.saltoHorizontal(); i++) {
-                        for (int j = movimiento.getPosInicial().getFila() - 1; j > movimiento.saltoVertical(); j--) {
+                    for (int i = movimiento.getPosInicial().getColumna() + 1; i < movimiento.getPosFinal().getColumna(); i++) {
+                        for (int j = movimiento.getPosInicial().getFila() - 1; j > movimiento.getPosFinal().getFila(); j--) {
                             if (tablero[j][i] != null) {
                                 siHay = true;
                             }
@@ -158,8 +158,8 @@ public class Tablero {
             }else if (movimiento.getPosInicial().getFila() < movimiento.getPosFinal().getFila()){
 
                 //si es diagonal descendente (Decrecen columnas y aumentan filas)
-                for (int i = movimiento.getPosInicial().getColumna() - 1; i > movimiento.saltoHorizontal(); i--) {
-                    for (int j = movimiento.getPosInicial().getFila() + 1; j < movimiento.saltoVertical(); j++) {
+                for (int i = movimiento.getPosInicial().getColumna() - 1; i > movimiento.getPosFinal().getColumna(); i--) {
+                    for (int j = movimiento.getPosInicial().getFila() + 1; j < movimiento.getPosFinal().getFila(); j++) {
                         if (tablero[j][i] != null) {
                             siHay = true;
                         }
@@ -168,8 +168,8 @@ public class Tablero {
             }else {
 
                 //Si es diagonal ascendente (decrecen filas y columnas)
-                for (int i = movimiento.getPosInicial().getColumna() - 1; i > movimiento.saltoHorizontal(); i--) {
-                    for (int j = movimiento.getPosInicial().getFila() - 1; j > movimiento.saltoVertical(); j--) {
+                for (int i = movimiento.getPosInicial().getColumna() - 1; i > movimiento.getPosFinal().getColumna(); i--) {
+                    for (int j = movimiento.getPosInicial().getFila() - 1; j > movimiento.getPosFinal().getFila(); j--) {
                         if (tablero[j][i] != null) {
                             siHay = true;
                         }
