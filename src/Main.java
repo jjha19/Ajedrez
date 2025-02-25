@@ -18,6 +18,9 @@ public class Main {
             if (juego.getTurno()){
                 quienVa = "negras";
             }else quienVa = "blancas";
+            if (juego.jaque(tablero)){
+                System.out.println("Jaque al rey de las " + quienVa);
+            }
             System.out.println("Introduce la jugada de las " + quienVa);
             entrada = (sc.nextLine());
 

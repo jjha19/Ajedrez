@@ -33,7 +33,7 @@ public class Peon extends Pieza{
             comera = true;
         }
 
-        if (((mov.esVertical() && mov.saltoVertical()==1) || (mov.saltoVertical()==2 && saltodoble) || (comera && mov.esDiagonal() && (mov.saltoHorizontal() == 1 && mov.saltoVertical() == 1))) && direccionBien){
+        if (((mov.esVertical() && mov.saltoVertical()==1) || (mov.esVertical() && mov.saltoVertical()==2 && saltodoble) || (comera && mov.esDiagonal() && (mov.saltoHorizontal() == 1 && mov.saltoVertical() == 1))) && direccionBien){
             valido = true;
         }
         return valido;

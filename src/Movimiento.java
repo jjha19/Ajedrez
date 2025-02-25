@@ -10,9 +10,21 @@ public class Movimiento {
         this.posFinal = posFinal;
     }
 
-    // Necesito una sobrecarga de constructores para poder hacer que el peon coma solo si hay una pieza "a tiro"
+    // Necesito una sobrecarga de constructores que incluyan tablero para poder hacer que el peon coma solo si hay una pieza "a tiro"
     public Movimiento(Posicion posInicial, Posicion posFinal, Tablero tablero) {
         this.posInicial = posInicial;
+        this.posFinal = posFinal;
+        this.tablero = tablero;
+    }
+
+    public Movimiento(Posicion posInicial, int fila, int columna, Tablero tablero) {
+        this.posInicial = posInicial;
+        this.posFinal = new Posicion(fila, columna);
+        this.tablero = tablero;
+    }
+
+    public Movimiento(int fila, int columna, Posicion posFinal, Tablero tablero) {
+        this.posInicial = new Posicion(fila, columna);
         this.posFinal = posFinal;
         this.tablero = tablero;
     }
