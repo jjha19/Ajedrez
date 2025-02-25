@@ -15,28 +15,32 @@ public class Main {
 
         do {
             tablero.pintarTablero();
-            if (juego.getTurno()){
+            if (juego.getTurno()) {
                 quienVa = "negras";
-            }else quienVa = "blancas";
-            if (juego.jaque(tablero)){
+            } else quienVa = "blancas";
+            if (juego.jaque(tablero)) {
                 System.out.println("Jaque al rey de las " + quienVa);
             }
             System.out.println("Introduce la jugada de las " + quienVa);
             entrada = (sc.nextLine());
 
-            if(entrada.equals("me rindo")){
+
+            // Estos ifs miran si hay entradas atípicas
+
+            if (entrada.equals("me rindo")) {
                 fin = true;
                 juego.setTurno(!juego.getTurno());
-                if (juego.getTurno()){
+                if (juego.getTurno()) {
                     quienVa = "negras";
-                }else quienVa = "blancas";
+                } else quienVa = "blancas";
                 System.out.println("¡Ganan las " + quienVa + "!");
-            }else if(entrada.equalsIgnoreCase("o-o") || entrada.equalsIgnoreCase("o-o-o")){
+
+            } else if (entrada.equalsIgnoreCase("o-o") || entrada.equalsIgnoreCase("o-o-o")) {
                 if (juego.validarJugada(entrada, tablero) == null) {
                     juego.validarJugada(entrada, tablero);
                     juego.setTurno(!juego.getTurno());
                 } else System.out.println(juego.validarJugada(entrada, tablero));
-            }else{
+            } else {
                 if (juego.validarJugada(entrada, tablero) == null) {
                     mov = juego.transformarAJugada(entrada);
                     tablero.ponPieza(tablero.devuelvePieza(mov.getPosInicial()), mov.getPosFinal());
@@ -45,7 +49,15 @@ public class Main {
                     juego.setTurno(!juego.getTurno());
                 } else System.out.println(juego.validarJugada(entrada, tablero));
 
+                if (juego.reyBlancoMuerto(tablero) || juego.reyNegroMuerto(tablero)) {
+                    fin = true;
+                    System.out.println("¡El rey ha muerto! Se acaba la partida");
+                }else{
+                    if (juego.buscaPeonPromo(tablero)) {
+                        juego.promocionarPeon(tablero);
+                    }
+                }
             }
-        }while (!fin);
+        } while (!fin);
     }
 }

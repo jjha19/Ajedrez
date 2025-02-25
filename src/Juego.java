@@ -1,6 +1,9 @@
+import java.util.Scanner;
+
 public class Juego {
     private boolean turno;
     private Movimiento mov;
+    private Scanner sc = new Scanner(System.in);
 
     public boolean getTurno() {
         return turno;
@@ -213,13 +216,13 @@ public class Juego {
             for (int j = 0; j < 8; j++) {
                 if (tablero.devuelvePieza(i, j) != null) {
                     if (tablero.devuelvePieza(i, j).getColor()) {
-                        Movimiento ataqueARey = new Movimiento(i,j,posReyBlanco,tablero);
-                        if (tablero.devuelvePieza(i, j).validoMovimiento(ataqueARey)){
+                        Movimiento ataqueARey = new Movimiento(i, j, posReyBlanco, tablero);
+                        if (tablero.devuelvePieza(i, j).validoMovimiento(ataqueARey)) {
                             jaque = true;
                         }
-                    }else {
-                        Movimiento ataqueARey = new Movimiento(i,j,posReyNegro,tablero);
-                        if (tablero.devuelvePieza(i, j).validoMovimiento(ataqueARey)){
+                    } else {
+                        Movimiento ataqueARey = new Movimiento(i, j, posReyNegro, tablero);
+                        if (tablero.devuelvePieza(i, j).validoMovimiento(ataqueARey)) {
                             jaque = true;
                         }
                     }
@@ -231,10 +234,128 @@ public class Juego {
 
     public boolean jaqueMate(Tablero tablero, Juego juego) {
         boolean mate = false;
-        if(juego.jaque(tablero)) {
+        if (juego.jaque(tablero)) {
             System.out.println("Programar");
         }
         return mate;
     }
 
+    public boolean buscaPeonPromo(Tablero tablero) {
+        boolean haypeon = false;
+        for (int i = 0; i < 8; i++) {
+            if (tablero.devuelvePieza(0, i) instanceof Peon) {
+                haypeon = true;
+            }
+        }
+        for (int i = 0; i < 8; i++) {
+            if (tablero.devuelvePieza(7, i) instanceof Peon) {
+                haypeon = true;
+            }
+        }
+        return haypeon;
+    }
+
+    public Pieza promocionarPeon(Tablero tablero) {
+        Pieza promocion = null;
+        Posicion posPeon;
+        int opcion;
+        boolean valido = false;
+
+        for (int i = 0; i < 8; i++) {
+            if (tablero.devuelvePieza(0, i) instanceof Peon) {
+                posPeon = new Posicion(0, i);
+                do {
+                    System.out.println("Elige a que pieza quieres promocionar tu peon:\n" +
+                            "1. Reina / 2. Alfil / 3. Caballo / 4. Torre");
+                    opcion = sc.nextInt();
+
+                    switch (opcion) {
+                        case 1:
+                            promocion = new Reina(true);
+                            valido = true;
+                            break;
+                        case 2:
+                            promocion = new Alfil(true);
+                            valido = true;
+                            break;
+                        case 3:
+                            promocion = new Caballo(true);
+                            valido = true;
+                            break;
+                        case 4:
+                            promocion = new Torre(true);
+                            valido = true;
+                            break;
+
+                        default:
+                            System.out.println("Debes elegir una pieza válida");
+                            break;
+                    }
+                } while (!valido);
+                tablero.ponPieza(promocion, posPeon);
+            }
+        }
+        for (int i = 0; i < 8; i++) {
+            if (tablero.devuelvePieza(7, i) instanceof Peon) {
+                posPeon = new Posicion(7, i);
+                do {
+                    System.out.println("Elige a que pieza quieres promocionar tu peon:\n" +
+                            "1. Reina / 2. Alfil / 3. Caballo / 4. Torre");
+                    opcion = sc.nextInt();
+
+                    switch (opcion) {
+                        case 1:
+                            promocion = new Reina(false);
+                            valido = true;
+                            break;
+                        case 2:
+                            promocion = new Alfil(false);
+                            valido = true;
+                            break;
+                        case 3:
+                            promocion = new Caballo(false);
+                            valido = true;
+                            break;
+                        case 4:
+                            promocion = new Torre(false);
+                            valido = true;
+                            break;
+                        default:
+                            System.out.println("Debes elegir una pieza válida");
+                            break;
+                    }
+                } while (!valido);
+                tablero.ponPieza(promocion, posPeon);
+            }
+        }
+        return promocion;
+    }
+
+    public boolean reyBlancoMuerto(Tablero tablero) {
+        boolean reyMuerto = true;
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                if (tablero.devuelvePieza(i, j) instanceof Rey) {
+                    if (!tablero.devuelvePieza(i, j).getColor()) {
+                        reyMuerto = false;
+                    }
+                }
+            }
+        }
+        return reyMuerto;
+    }
+
+    public boolean reyNegroMuerto(Tablero tablero) {
+        boolean reyMuerto = true;
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                if (tablero.devuelvePieza(i, j) instanceof Rey) {
+                    if (tablero.devuelvePieza(i, j).getColor()) {
+                        reyMuerto = false;
+                    }
+                }
+            }
+        }
+        return reyMuerto;
+    }
 }

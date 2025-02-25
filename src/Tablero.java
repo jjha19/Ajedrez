@@ -11,11 +11,11 @@ public class Tablero {
         tablero[0][6] = new Caballo(false);
         tablero[0][7] = new Torre(false);
         for (int i = 0; i < 8; i++) {
-            tablero[1][i] = new Peon(false);
+            tablero[1][i] = new Peon(true);
         }
 
         for (int i = 0; i < 8; i++) {
-            tablero[6][i] = new Peon(true);
+            tablero[6][i] = new Peon(false);
         }
         tablero[7][0] = new Torre(true);
         tablero[7][1] = new Caballo(true);
